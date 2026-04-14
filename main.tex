@@ -1,0 +1,94 @@
+% MODELO LATEX DE PPC DA PROGRAD 
+% PPC padrão 2025 ... até presente momento
+% Modelo latex  de PPC
+% Criado em 13/04/2026
+% Autor: 
+% Prof. Dr. Gerson Alberto Leiria Nunes 
+% Usando o auxílio do Google Gemini Pro
+% Coordenador de curso de Engenharia de Computação
+% e-mail: <gersonnunes@unipampa.edu.br>
+
+\RequirePackage{silence}
+\WarningFilter{latex}{Command \showhyphens has changed}
+
+\documentclass[12pt,openright,oneside,a4paper,english,brazil]{abntex2}
+
+% Pacotes Básicos
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault} % Define a fonte sem serifa (helvetica) como padrão
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{pdfpages}
+
+\usepackage{hyperref}
+\pdfstringdefDisableCommands{
+  \let\uppercase\relax
+}
+
+% Pacotes de Citações ABNT
+\usepackage[alf]{abntex2cite}
+
+% Ajuste das margens do documento
+\usepackage[top=3cm, bottom=2cm, left=3cm, right=2cm, headheight=82pt, includehead]{geometry}
+
+
+% 1. Definindo o estilo 'padraoppc'
+\makepagestyle{padraoppc}
+\makeheadrule{padraoppc}{\textwidth}{0.5pt} % Linha no cabeçalho
+\makefootrule{padraoppc}{\textwidth}{0pt}{0pt} % Sem linha no rodapé
+
+\makeevenhead{padraoppc}{\small \textbf{PPC - Engenharia de Computação}}{}{\small Campus Bagé - 2026}
+\makeoddhead{padraoppc}{\small \textbf{PPC - Engenharia de Computação}}{}{\small Campus Bagé - 2026}
+\makeevenfoot{padraoppc}{}{\thepage}{}
+\makeoddfoot{padraoppc}{}{\thepage}{}
+
+% 2. Definindo o estilo 'estilocapa'
+\makepagestyle{estilocapa}
+\makeheadrule{estilocapa}{\textwidth}{0pt} % Sem linha
+\makeevenhead{estilocapa}{}{\includegraphics[width=4cm]{figuras/logo_unipampa.jpg}}{}
+\makeoddhead{estilocapa}{}{\includegraphics[width=4cm]{figuras/logo_unipampa.jpg}}{}
+
+% 3. Aplicando os estilos
+\makeatletter
+\let\ps@plain\ps@padraoppc % Faz com que páginas de início de capítulo usem o padrão
+\makeatother
+\pagestyle{padraoppc}
+
+
+
+% 3. Redefine os estilos automáticos do abntex2 para usar o nosso padrão
+\aliaspagestyle{plain}{padraoppc}
+\aliaspagestyle{chapter}{padraoppc}
+
+% Aplica o estilo globalmente a partir daqui
+\pagestyle{padraoppc}
+
+\begin{document}
+
+% elementos como capa e contracapa listas de figuras, tabelas e sumário
+\pretextual 
+\input{pre_textuais/01_capa_equipe}
+\input{pre_textuais/02_listas}
+
+% elementos textuais (os capítulos em si)
+\textual
+\setlength{\headheight}{15pt}
+\input{capitulos/00_identificacao}
+\input{capitulos/01_contextualizacao}
+\input{capitulos/02_organizacao}
+\input{capitulos/03_ementario}
+\input{capitulos/04_gestao}
+
+% elementos pós-textuais (referências, apêndices e anexos)
+\postextual
+\bibliography{referencias}
+\input{pos_textuais/apendices_anexos}
+
+\end{document}
