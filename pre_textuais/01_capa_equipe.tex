@@ -1,6 +1,39 @@
-% pre_textuais/01_capa_equipe.tex\
-
 % --- CAPA ---
+
+% ==========================================
+% 1. LAYOUT DA CAPA (Página 1)
+% ==========================================
+\AddToShipoutPictureBG*{ % O '*' garante que isso só apareça na Capa
+\begin{tikzpicture}[remember picture, overlay]
+        
+        % 1. CABEÇALHO ONDULADO (ALTURA PELA METADE)
+        \fill[VerdeUnipampa] 
+            (current page.north west) -- 
+            ([yshift=-1.5cm]current page.north west) % Era -3cm
+            .. controls ([xshift=8cm, yshift=-2.25cm]current page.north west) % Curva era -4.5cm
+            and ([xshift=15cm, yshift=-0.75cm]current page.north west) % Curva era -1.5cm
+            .. ([yshift=-1.25cm]current page.north east) % Final era -2.5cm
+            -- (current page.north east) -- cycle;
+            
+        % Texto ajustado para a nova altura do cabeçalho
+        \node[anchor=north west, text=white, font=\bfseries\large] at ([xshift=1.5cm, yshift=-0.4cm]current page.north west){};
+        \node[anchor=north west, text=white, font=\tiny] at ([xshift=1.5cm, yshift=-0.9cm]current page.north west){};
+
+        % 2. RODAPÉ ONDULADO (ALTURA PELA METADE)
+        \fill[VerdeUnipampa] 
+            (current page.south west) -- 
+            ([yshift=1cm]current page.south west) % Era 2cm
+            .. controls ([xshift=10cm, yshift=2cm]current page.south west) % Curva era 4cm
+            and ([xshift=16cm, yshift=0.25cm]current page.south west) % Curva era 0.5cm
+            .. ([yshift=0.75cm]current page.south east) % Final era 1.5cm
+            -- (current page.south east) -- cycle;
+            
+        % Texto ajustado no rodapé
+        \node[anchor=south, text=white, font=\bfseries\small] at ([yshift=0.4cm]current page.south){};
+    \end{tikzpicture}
+}
+
+
 
 \begin{center}
     \thispagestyle{estilocapa} % Puxa o logo pro cabeçalho e tira paginação
@@ -25,8 +58,42 @@
 
 \newpage
 
+
+\newpage
+\thispagestyle{empty} % Garante que não há numeração padrão do LaTeX nesta página
+
 % --- EQUIPE DIRETIVA ---
-\thispagestyle{padraoppc}
+
+% =================================================================
+% INICIA OS RETÂNGULOS VERDES A PARTIR DA FOLHA 2 (E TODAS AS SEGUINTES)
+% =================================================================
+\AddToShipoutPictureBG{
+    \ifnum\value{page}>1 % Mantém a regra de começar após a folha da equipe
+    \begin{tikzpicture}[remember picture, overlay]
+        % --- CABEÇALHO DUPLO ---
+        % 1º Retângulo (Principal): começa a 0.5cm da borda, altura de 0.6cm
+        \fill[VerdeUnipampa] ([yshift=-1.0cm]current page.north west) rectangle ([yshift=-1.2cm]current page.north east);
+        
+        % 2º Retângulo (Linha fina): espaço de 0.3cm após o primeiro, altura de 0.1cm
+        \fill[VerdeUnipampa] ([yshift=-1.3cm]current page.north west) rectangle ([yshift=-1.4cm]current page.north east);
+        
+        % Texto no Retângulo Principal
+        \node[anchor=east, text=white, font=\bfseries\tiny] at ([xshift=-1cm, yshift=-0.8cm]current page.north east) {};
+
+        % --- RODAPÉ DUPLO ---
+        % 1º Retângulo (Principal): começa a 0.5cm da borda inferior
+        \fill[VerdeUnipampa] ([yshift=1.0cm]current page.south west) rectangle ([yshift=1.2cm]current page.south east);
+        
+        % 2º Retângulo (Linha fina): espaço de 0.3cm
+        \fill[VerdeUnipampa] ([yshift=1.3cm]current page.south west) rectangle ([yshift=1.4cm]current page.south east);
+        
+        % Número da página centralizado no retângulo principal do rodapé
+        \node[anchor=south, text=white] at ([yshift=0.65cm]current page.south) {};
+    \end{tikzpicture}
+    \fi
+}
+% =================================================================
+
 \begin{center}
     {\Large \textbf{PROJETO PEDAGÓGICO DO CURSO DE ENGENHARIA DE COMPUTAÇÃO}}\\
     {\large BACHARELADO}
@@ -50,9 +117,7 @@
 \textbf{Coordenadora Acadêmica:} Isaphi Marlene Jardim Alvarez\\
 \textbf{Coordenador Administrativo:} Anderson Silva de Araújo\\
 \textbf{Coordenador do Curso:} Gerson Alberto Leiria Nunes\\
-\textbf{Coordenador(a) Substituto(a):} Julio Domingues Saraçol Júnior]\\
+\textbf{Coordenador(a) Substituto(a):} Julio Domingues Saraçol Júnior\\
 \textbf{Núcleo Docente Estruturante:} Alice Fonseca Finger, Bruno Silveira Neves, Carlos Michel Betemps, Érico Marcelo Hoff do Amaral, Fábio Luis Livi Ramos, Gerson Alberto Leiria Nunes, Julio Domingues Saraçol Júnior, Leonardo Bidese de Pinho, Sandra Dutra Piovesan e Sandro da Silva Camargo
-%\textbf{Colaborador(es) (opcional):} [Nome dos Colaboradores, se houver]\\
-%\textbf{Revisor(es) (se houver):} [Nome dos Revisores, se houver]
 
 \newpage
