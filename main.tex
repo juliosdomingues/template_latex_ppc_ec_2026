@@ -27,6 +27,17 @@
 \usepackage{longtable}
 \usepackage{pdfpages}
 
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{eso-pic}
+
+% RGB da cor verde retirada do documento:
+% https://unipampa.edu.br/portal/sites/default/files/manual_de_identidade_visual_unipampa-dez_2013_-.pdf
+% que trata da identidade visual da unipampa
+
+\definecolor{VerdeUnipampa}{RGB}{0, 144, 69}
+
+
 \usepackage{hyperref}
 \pdfstringdefDisableCommands{
   \let\uppercase\relax
@@ -36,18 +47,18 @@
 \usepackage[alf]{abntex2cite}
 
 % Ajuste das margens do documento
-\usepackage[top=3cm, bottom=2cm, left=3cm, right=2cm, headheight=82pt, includehead]{geometry}
+\usepackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
 
 
 % 1. Definindo o estilo 'padraoppc'
-\makepagestyle{padraoppc}
-\makeheadrule{padraoppc}{\textwidth}{0.5pt} % Linha no cabeçalho
-\makefootrule{padraoppc}{\textwidth}{0pt}{0pt} % Sem linha no rodapé
 
-\makeevenhead{padraoppc}{\small \textbf{PPC - Engenharia de Computação}}{}{\small Campus Bagé - 2026}
-\makeoddhead{padraoppc}{\small \textbf{PPC - Engenharia de Computação}}{}{\small Campus Bagé - 2026}
-\makeevenfoot{padraoppc}{}{\thepage}{}
-\makeoddfoot{padraoppc}{}{\thepage}{}
+\makepagestyle{padraoppc}
+\makeheadrule{padraoppc}{\textwidth}{0pt} % Remove a linha preta
+\makefootrule{padraoppc}{\textwidth}{0pt}{0pt}
+\makeevenhead{padraoppc}{}{}{}
+\makeoddhead{padraoppc}{}{}{}
+\makeevenfoot{padraoppc}{}{}{} % Limpa o rodapé (o número vai no retângulo verde agora)
+\makeoddfoot{padraoppc}{}{}{}
 
 % 2. Definindo o estilo 'estilocapa'
 \makepagestyle{estilocapa}
@@ -72,6 +83,7 @@
 
 \begin{document}
 
+
 % elementos como capa e contracapa listas de figuras, tabelas e sumário
 \pretextual 
 \input{pre_textuais/01_capa_equipe}
@@ -79,7 +91,6 @@
 
 % elementos textuais (os capítulos em si)
 \textual
-\setlength{\headheight}{15pt}
 \input{capitulos/00_identificacao}
 \input{capitulos/01_contextualizacao}
 \input{capitulos/02_organizacao}
